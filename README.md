@@ -54,7 +54,7 @@ If you are in a room, leave, and rejoin the room, it will not reappear in the ro
 If there are any other bugs, you may report them in "Issues".
 
 
-## Important Information and Warinings
+## Important Information and Warnings
 This applies to all versions. You need to have the file located in `C:/user/bin` unless otherwise specified by the README for that version.
 If you do not name it the correct name, the old version will NOT be deleted. If you have another file with the intended name,
 that file will be deleted during updates, or overwritten if going to the same path.
