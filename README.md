@@ -20,58 +20,42 @@ Vapor is equipped with an automatic update-checker that runs when you start the 
 and every 2 minutes until the window is closed.
 A notification will appear if a software update is availible, and you will be able to update now or dismiss it until you close the app.
 
-## Features in 2.0.5
-* Messaging - It's a Matrix Client.
-* Rooms - Lists your rooms. You can create, rename, leave, or join rooms.
-* CleanHTML - 2 functions that prevent viruses from being spread via markdown and html. Uses Vapor CleanHtml 1.0.0.
-* Link Support - All links will open in Internet Exploder when clicked on, for the exception of room joining links.
-* Join Room by Link - Clicking on a link to a room will prompt you if you would like to join that room.
-* PFP - Profile pictures are showed next to the message.
-* Read "/me" - the "/me" command renders differently than messages, (kinda) resembling hangouts "/me"
-* Clean sign-in/sign-out - Transistions smoothly when signing in or out by using the same window the entire time
-* Markdown - you can use markdown in your messages. All markdown/HTML is cleaned before it is sent to add extra protection for other clients.
-* Commands - When you are typing, a "/" at the beginning will show a list of commands. From there you can filter the commands by name.
-* XSS Protection - from Cross Site Scripting AND Cross Site Styling
-* Easy migration features - software updates can now rename and move folders, bootscripts, and more!
-* Upload Files - use the "/upload" command to directly upload files from your computer!
-* Upload PFP - Go to "File > Upload PFP" to set a profile picture from your computer!
-* File and Image Rendering - Properly render files and images (and download them too!).
+## The future is coming, prepare
+Vapor 2.0.8 has 2 bug-free WIP releases (don't try them though) and the official release of Vapor 2.0.8 is almost here. With 2.0.8 WIP Updates being created and pushed overnight, issuess and pull requests being made every minute, bugs being fixed, Beta/WIP Versions being tested, and patch C for 2.0.7 in the Almost-developed-completely stage, 2.0.8 will be here before you know it!
+If you are on 2.0.1 to 2.0.3, upgrade to 2.0.3 PATCH to provide compatibility,
+2.0.3 to 2.0.6 should at least ugrade to 2.0.7, but 2.0.7b is recommended.
+WARNING: If you do not choose to upgrade from 2.0.3 Patch to any version of 2.0.7, you will have to re-sign in after the 2.0.8 Offical Update!
 
-## Commands in 2.0.5
-Here is a list of commands you can currently use in Vapor:
+## Tokens are here
+Vapor 2.0.7a and newer use access tokens (user id, access token, device id) set. 2.0.6 and older, however use PlainTextPassword (username, password, device id) sets. Since 2.0.7a, tokens have been in use for extra security.
 
-`/plain <text>` Sends a message as plain text (no formatting)
+`2.0.1-2.0.6 - PlainText` V 2.0.1 to 2.0.6 use the same PlainTextPassword system (100% compatible)
+`2.0.7x - Token Migration` Any build of 2.0.7 will migrate PlainTextPassword sets to AccessTokens sets.
+`2.0.8+ - PTP Destruction` If "Session.json" represents a PlainTextPassword set, it will be destroyed before the app has started.
 
-`/html <content>` Sends a message formatted as HTML instead of markdown.
+## 2.0.7 Patch C - Everything you need to know
+Vapor 2.0.7 Patch C, more commonly known as 2.0.7c, will be coming out in the near future before 2.0.8 Initial Release.
+Here's everything you need to know:
 
-`/me <action>` Describe yourself doing something, eg /me eats pizza.
-
-`/ban <userid>` Bans a user from the room.
-
-`/unban <userid>` Unbans a user from the room.
-
-`/kick <userid>` Kicks a user out of the room.
-
-`/upload <fullpath>` (new!) Uploads a file from your computer into a room.
-
-## Known Bugs in 2.0.5
-
-Profile picture update event doesn't fire.
-
-If there are any other bugs, you may report them in "Issues".
+* Better Calls - Calling PFP will be resized, rounded, and styled blue
+* Better security - A boot script will auto-migrate PlainTextPassword sets to AccessToken sets on each bootup
 
 
-## ChangeLog - The Latest and Greatest Features in Vapor 2.0.5
+## 2.0.8 Offical Command List (Leaked!)
+Full list of upcoming commands in Vapor 2.0.8 (Leaked!)
+* `/me <text>` - Describe yourself.
+* `/invite <userid>` - invite a user to the current room
+* `/kick <userid>` - kick user from the current room
+* `/ban <userid>` - ban user from the current room
+* `/unban <userid>` - unban user from the current room
+* `/upload <path>` - uploads and sends a file
+* `/uploadimage <path>` - uploads and sends a file as an image
+* `/call` - starts a voice call
+* `/videocall` - starts a voice call and enables your camera
+* `/plain <content>` - doesn't format your messagge
+* `/html <content>` - sends HTML formatted content
 
-* Fixed `/upload` - actually uploads to the room you're in
-* PFP Upload - upload an image from your computer to set as your profile picture
-* CSS Exploits Fixed - prevents inline CSS from being exploited
-* Show uploaded images - view images that have been uploaded
-* File downloads - click on the name of a file to download it
-* Download images - right click > save image to download the image
-
-
-## Important Information and Warnings
-This applies to all versions. You need to have the file located in `C:/user/bin` unless otherwise specified by the README for that version.
-If you do not name it the correct name, the old version will NOT be deleted. If you have another file with the intended name,
-that file will be deleted during updates, or overwritten if going to the same path.
+## Rumors: with great power comes great compatibility
+All versions of Vapor (2.0.1 to 2.0.8 WIP V2) run on Windows96 V3 AND V2.
+But none work on V1.
+With the release of 2.0.8, there may **OR MAY NOT** be an initial release (1.0.0) for a V1-targeted version of Vapor.
