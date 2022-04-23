@@ -58,7 +58,7 @@ function onFeedRemoved(call,f$) {
 
 function getRemoteFeeds(call) {
   var feeds=[];
-  var f$=call.getFeeds();
+  var f$=call.getRemoteFeeds();
   for(var i=0;i<f$.length;i++){
     feeds.push(f$[i])
   }
