@@ -94,8 +94,8 @@ function removeAllFeedElements(con) {
 function getFeedElByStreamId(con,id) {
   var el=getAllFeedElements(con);
   for(var i=0;i<el.length;i++) {
-    if(el.dataset.streamid===id){
-       return el;
+    if(el[i].dataset.streamid===id){
+       return el[i];
     }
   }
   return null
