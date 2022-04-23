@@ -21,6 +21,28 @@ function logStateChanges(call) {
   });
 }
 
+
+function onCallRejected(call,f$) {
+  var state=call.state;
+  call.on('state', function (e) {
+    var newstate=call.state;
+    if(newstate=="ended"&&state=="ringing") {
+      f$()
+    }
+  });
+}
+
+function onCallAnswered(call,f$) {
+  var state=call.state;
+  call.on('state', function (e) {
+    var newstate=call.state;
+    if(newstate=="ended"&&(state=="connected"||state=="connecting")) {
+      f$()
+    }
+  });
+}
+
+
 function onFeedRemoved(call,f$) {
   var feeds = getRemoteFeeds(call);
   call.on('feeds_changed', function (e) {
