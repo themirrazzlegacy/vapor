@@ -64,3 +64,29 @@ function getRemoteFeeds(call) {
   }
   return feeds
 }
+
+
+
+function createFeedElement(feed) {
+  var el=document.createElement("video");
+  el.srcObject=feed.stream;
+  el.setAttribute("data-streamid", feed.stream.id);
+  el.style.width="170px";
+  el.style.height="60px";
+  el.setAttribute("data-purpose", feed.purpose);
+  el.className="vapor-vcall-feed";
+  el.
+  return el
+}
+
+
+function getAllFeedElements(con) {
+  return con.querySelectorAll('video.vapor-vcall-feed');
+}
+
+function removeAllFeedElements(con) {
+  var el=getAllFeedElements(con);
+  for(var i=0;i<el.length;i++) {
+    el[i].parentNode.removeChild(el[i]);
+  }
+}
