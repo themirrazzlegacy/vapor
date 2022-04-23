@@ -33,13 +33,9 @@ Vapor 2.0.7a and newer use access tokens (user id, access token, device id) set.
 `2.0.7x - Token Migration` Any build of 2.0.7 will migrate PlainTextPassword sets to AccessTokens sets.
 `2.0.8+ - PTP Destruction` If "Session.json" represents a PlainTextPassword set, it will be destroyed before the app has started.
 
-## 2.0.7 Patch C - Everything you need to know
-Vapor 2.0.7 Patch C, more commonly known as 2.0.7c, will be coming out in the near future before 2.0.8 Initial Release.
-Here's everything you need to know:
-
-* Better Calls - Calling PFP will be resized, rounded, and styled blue
-* Better security - A boot script will auto-migrate PlainTextPassword sets to AccessToken sets on each bootup
-
+## 2.0.7c Offically canceled
+We've decided to focus more on new technologies, like WebRTC instead of editing old versions of Vapor.
+Therefore, Vapor 2.0.7 Patch C is offically canceled, so we can focus on making 2.0.8 great!
 
 ## 2.0.8 Offical Command List (Leaked!)
 Full list of upcoming commands in Vapor 2.0.8 (Leaked!)
@@ -54,6 +50,11 @@ Full list of upcoming commands in Vapor 2.0.8 (Leaked!)
 * `/videocall` - starts a voice call and enables your camera
 * `/plain <content>` - doesn't format your messagge
 * `/html <content>` - sends HTML formatted content
+
+
+## Say goodbye to commands and hello to buttons
+That title is misleading, Commands will never go away, but `/call`, `/videocall`, `/upload`, and `/uploadimage` will all be replaced with corresponding buttons in 2.0.8. The actuall commands will stay until 2.0.9, when they will be removed from the command list.
+
 
 ## Rumors: with great power comes great compatibility
 All versions of Vapor (2.0.1 to 2.0.8 WIP V2) run on Windows96 V3 AND V2.
