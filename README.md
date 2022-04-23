@@ -20,25 +20,8 @@ Vapor is equipped with an automatic update-checker that runs when you start the 
 and every 2 minutes until the window is closed.
 A notification will appear if a software update is availible, and you will be able to update now or dismiss it until you close the app.
 
-## The future is coming, prepare
-Vapor 2.0.8 has 2 bug-free WIP releases (don't try them though) and the official release of Vapor 2.0.8 is almost here. With 2.0.8 WIP Updates being created and pushed overnight, issuess and pull requests being made every minute, bugs being fixed, Beta/WIP Versions being tested, and patch C for 2.0.7 in the Almost-developed-completely stage, 2.0.8 will be here before you know it!
-If you are on 2.0.1 to 2.0.3, upgrade to 2.0.3 PATCH to provide compatibility,
-2.0.3 to 2.0.6 should at least ugrade to 2.0.7, but 2.0.7b is recommended.
-WARNING: If you do not choose to upgrade from 2.0.3 Patch to any version of 2.0.7, you will have to re-sign in after the 2.0.8 Offical Update!
-
-## Tokens are here
-Vapor 2.0.7a and newer use access tokens (user id, access token, device id) set. 2.0.6 and older, however use PlainTextPassword (username, password, device id) sets. Since 2.0.7a, tokens have been in use for extra security.
-
-`2.0.1-2.0.6 - PlainText` V 2.0.1 to 2.0.6 use the same PlainTextPassword system (100% compatible)
-`2.0.7x - Token Migration` Any build of 2.0.7 will migrate PlainTextPassword sets to AccessTokens sets.
-`2.0.8+ - PTP Destruction` If "Session.json" represents a PlainTextPassword set, it will be destroyed before the app has started.
-
-## 2.0.7c Offically canceled
-We've decided to focus more on new technologies, like WebRTC instead of editing old versions of Vapor.
-Therefore, Vapor 2.0.7 Patch C is offically canceled, so we can focus on making 2.0.8 great!
-
-## 2.0.8 Offical Command List (Leaked!)
-Full list of upcoming commands in Vapor 2.0.8 (Leaked!)
+## 2.0.8 Offical Command List
+Full list of upcoming commands in Vapor 2.0.8 (Pre-Release)
 * `/me <text>` - Describe yourself.
 * `/invite <userid>` - invite a user to the current room
 * `/kick <userid>` - kick user from the current room
@@ -50,17 +33,6 @@ Full list of upcoming commands in Vapor 2.0.8 (Leaked!)
 * `/videocall` - starts a voice call and enables your camera
 * `/plain <content>` - doesn't format your messagge
 * `/html <content>` - sends HTML formatted content
-
-
-## Say goodbye to commands and hello to buttons
-That title is misleading, Commands will never go away, but `/call`, `/videocall`, `/upload`, and `/uploadimage` will all be replaced with corresponding buttons in 2.0.8. The actuall commands will stay until 2.0.9, when they will be removed from the command list.
-
-
-## Rumors: with great power comes great compatibility
-All versions of Vapor (2.0.1 to 2.0.8 WIP V2) run on Windows96 V3 AND V2.
-But none work on V1.
-With the release of 2.0.8, there may **OR MAY NOT** be an initial release (1.0.0) for a V1-targeted version of Vapor.
-
 
 ## SSO: Why it's not in Vapor and why it won't be in 2.0.8
 If you sign in to matrix via Google, Facebook, or anything else, you won't be able to log into your account on Vapor.
@@ -74,7 +46,7 @@ Here is a list of reasons why this won't work:
 Hopefully a feature coming out in 2.0.8, a 2.0.8 Patch, or (at the latest) 2.0.9, a new feature will be coming out (hopefully): screen sharing.
 The difference: it shares only your Windows96 screen and audio (iframes don't render, video or audio) through matrix.
 
-## Currently Working On:
+## Roadmap:
 Here are Vapor features we are working on:
 * Displaying Video Feeds - and Not Osciallating audio!
 * the new and improved command system
@@ -82,8 +54,5 @@ Here are Vapor features we are working on:
 * the next 2.0.8 WIP Version
 * a bunch of new, fancy commands
 
-## Auto-update bug
-The CurrentVersiob JSON file is not formatted properly. When Updating to 2.0.7b, go to `C:/user/appdata/C:/user/appdata`, select "Vapor96", copy it, and paste it into `C:/user/appdata`
-
-## That's all for now
-I have ran out of things to write except in a 2.0.8 WIP Update, you'll be able to play uploaded audio files (maybe)
+## Known bug
+The CurrentVersion JSON file is not formatted properly in some cases. When Updating to 2.0.7b, go to `C:/user/appdata/C:/user/appdata`, select "Vapor96", copy it, and paste it into `C:/user/appdata`
