@@ -59,3 +59,30 @@ Full list of upcoming commands in Vapor 2.0.8 (Leaked!)
 All versions of Vapor (2.0.1 to 2.0.8 WIP V2) run on Windows96 V3 AND V2.
 But none work on V1.
 With the release of 2.0.8, there may **OR MAY NOT** be an initial release (1.0.0) for a V1-targeted version of Vapor.
+
+
+## SSO: Why it's not in Vapor and why it won't be in 2.0.8
+If you sign in to matrix via Google, Facebook, or anything else, you won't be able to log into your account on Vapor.
+Here is a list of reasons why this won't work:
+
+1. The trackers - right when you add SSO to your app, Google, Microsoft, and Facebook will start tracking you. We don't want to expose user data, and we don't sell users data because we don't even collect it. Unlike most services with SSO sign ins.
+2. Google.com don't support iframes - Vapor is a Matrix Client for Windows 96, which is a website. It's default browser, Internet Exploder, is an iframe browser, meaning sites are embedded in iframes. Most major companies don't let their sites be embedded in iframes, specifically the login page.
+3. APIs are huge - The Matrix API itself is already big enough - SSO APIs could make us unable to publish updates due to their size.
+
+## Rumors: Stop-Motion Screen Sharing
+Hopefully a feature coming out in 2.0.8, a 2.0.8 Patch, or (at the latest) 2.0.9, a new feature will be coming out (hopefully): screen sharing.
+The difference: it shares only your Windows96 screen and audio (iframes don't render, video or audio) through matrix.
+
+## Currently Working On:
+Here are Vapor features we are working on:
+* Displaying Video Feeds - and Not Osciallating audio!
+* the new and improved command system
+* better security
+* the next 2.0.8 WIP Version
+* a bunch of new, fancy commands
+
+## Auto-update bug
+The CurrentVersiob JSON file is not formatted properly. When Updating to 2.0.7b, go to `C:/user/appdata/C:/user/appdata`, select "Vapor96", copy it, and paste it into `C:/user/appdata`
+
+## That's all for now
+I have ran out of things to write except in a 2.0.8 WIP Update, you'll be able to play uploaded audio files (maybe)
