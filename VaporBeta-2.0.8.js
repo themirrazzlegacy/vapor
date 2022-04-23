@@ -1161,12 +1161,33 @@ top:0px;left:0px;
         client.on("Call.incoming", function (c){
             if(!$winopen){return}
             if(inCall){c.reject();return}
-            rng=Ringtone()
-            bdy.querySelector('.vapor-call-answer').style.display="";
-            inCall=true;
-            call=c;
-            console.log(call.feeds)
-            onFeedAdded(call, function (feed) {
+            rng=Ringtone();
+            var x$=c;
+            var rmid=c.roomId;
+        var ohu=x$.onHangupReceived;
+        var oca=x$.onAnswerRecieved;
+        var ocr=x$.onRejectRecieved;
+        call=x$;
+        inCall=true;
+        var myfeeds=[];
+        var hasOldFeeds=false;
+        for(var i=0;i<x$.feeds.length;i++) {
+            myfeeds.push(x$.feeds[i])
+        }
+        /*x$.on('feed_c', function (g){
+            if(!hasOldFeeds){
+                for(var i=0;i<myfeeds.length;i++) {
+                    vfa.appendChild(
+                        createFeedElement(
+                            myfeeds[i]
+                        )
+                    )
+                }
+                hasOldFeeds=true;
+            }
+            console.log(g);
+        })*/
+        onFeedAdded(call, function (feed) {
                 console.log("A feed was added!");
                 console.log(feed)
                 vfa.appendChild(
@@ -1186,42 +1207,35 @@ top:0px;left:0px;
                 }
             })
             logStateChanges(call)
-            var oac=c.onHangupReceived;
-            c.onHangupReceived=function(msg){
-                oac.call(c,msg);
-                call=null;
-                inCall=false;
-                rng.pause()
+        bdy.querySelector('.vapor-call-answer').style.display="";
+        x$.on('state',function (msg) {
+          if(!hasOldFeeds){
+            for(var i=0;i<myfeeds.length;i++) {
+                vfa.appendChild(
+                    createFeedElement(
+                        myfeeds[i]
+                    )
+                )
+            }
+            hasOldFeeds=true;
+        }
+            if(msg!="ended"){return}
+            call=null;
+            inCall=false;
+            rng.pause()
+            bdy.querySelector('.vapor-call-answer').style.display="none";
+            bdy.querySelector('.vapor-call-current').style.display="none";
+        });
+        bdy.querySelector('.vapor-call-end').onclick=function(){
+                x$.hangup();call=null;inCall=false
                 bdy.querySelector('.vapor-call-answer').style.display="none";
-                bdy.querySelector('.vapor-call-current').style.display="none";
+            bdy.querySelector('.vapor-call-current').style.display="none";
             }
-            for(var i=0;i<c.feeds.length;i++) {
-                vfa.appendChild(createFeedElement(c.feeds[i]))
-            }
-            /*onFeedAppend(c,function(stream) {
-                var a$=new Audio()
-                a$.srcObject=stream;
-                a$.play();
-            })*/
-            var rm=client.getRoom(c.roomId);
-            var RMA$=rm.getAvatarUrl();
-            var rma;
-            if(RMA$){rma=client.mxcUrlToHttp(RMA$)}
-            if(rma){
-                bdy.querySelector(".vapor-call-rmaone").style.backgroundImage=`url(${JSON.stringify(rma)})`;
-                bdy.querySelector(".vapor-call-rmatwo").style.backgroundImage=`url(${JSON.stringify(rma)})`;
-            }else{
-                bdy.querySelector(".vapor-call-rmaone").innerText=rm.name[0];
-                bdy.querySelector(".vapor-call-rmatwo").innerText=rm.name[0];
-            }
-            bdy.querySelector('.vapor-call-answer').style.display="";
-            bdy.querySelector('.vapor-call-accept').onclick=function(){
-                c.answer();
-                rng.pause()
-                bdy.querySelector('.vapor-call-answer').style.display="none";
-                bdy.querySelector('.vapor-call-current').style.display="";
-            }
+            var rm=client.getRoom(rmid);
+            bdy.querySelector(".vapor-call-rmaone").innerText=rm.name[0];
+            bdy.querySelector(".vapor-call-rmatwo").innerText=rm.name[0];
             bdy.querySelector('.vapor-call-decline').onclick=function(){
+                rng.pause()
                 c.reject();
                 call=null;
                 inCall=false;
@@ -1229,12 +1243,13 @@ top:0px;left:0px;
                 bdy.querySelector('.vapor-call-answer').style.display="none";
                 bdy.querySelector('.vapor-call-current').style.display="none";
             }
-            bdy.querySelector('.vapor-call-end').onclick=function(){
-                c.hangup();
+            bdy.querySelector('.vapor-call-accept').onclick=function(){
+                rng.pause()
+                x$.answer();call=null;inCall=false
                 bdy.querySelector('.vapor-call-answer').style.display="none";
-                bdy.querySelector('.vapor-call-current').style.display="none";
+            bdy.querySelector('.vapor-call-current').style.display="";
             }
-        })
+        });
         client.on("RoomMember.membership",function(e,m){
             if (!$winopen) {
                 return
@@ -1337,10 +1352,10 @@ top:0px;left:0px;
             bdy.querySelector('.vapor-call-current').style.display="none";
         });
         bdy.querySelector('.vapor-call-end').onclick=function(){
-                x$.hangup();call=null;inCall=false
-                bdy.querySelector('.vapor-call-answer').style.display="none";
-            bdy.querySelector('.vapor-call-current').style.display="none";
-            }
+            x$.hangup();call=null;inCall=false
+            bdy.querySelector('.vapor-call-answer').style.display="none";
+        bdy.querySelector('.vapor-call-current').style.display="none";
+        }
             var rm=client.getRoom(rmid)
             bdy.querySelector(".vapor-call-rmatwo").innerText=rm.name[0];
         x$.placeCall(true,video);
@@ -2532,13 +2547,23 @@ function onCallRejected(call,f$) {
   });
 }
 
+function onCallEnded(call,f$) {
+    var state=call.state;
+    call.on('state', function (e) {
+      var newstate=call.state;
+      if(newstate=="ended"&&(state=="connected"||state=="connecting")) {
+        f$()
+      }
+    });
+  }
+
 function onCallAnswered(call,f$) {
   var state=call.state;
   call.on('state', function (e) {
-    var newstate=call.state;
-    if(newstate=="ended"&&(state=="connected"||state=="connecting")) {
+      var newstate=call.state;
+      if(state=="ringing"&&(newstate=="connected"||newstate=="connecting")) {
       f$()
-    }
+      }
   });
 }
 
@@ -2565,9 +2590,28 @@ function getRemoteFeeds(call) {
   return feeds
 }
 
+function killMedia(stream){
+  var tracks=stream.getTracks();
+  for(var i=0;i<tracks.length;i++){
+    tracks[i].stop();
+  }
+}
+
 function createFeedElement(feed) {
+  var StreamVideo=feed.stream.getVideoTracks().length>0
   var el=document.createElement("video");
-  el.srcObject=feed.stream;
+  feed.stream.addEventListener('addtrack', function () {
+    if(feed.stream.getVideoTracks().length>0) {
+      if(!StreamVideo) {
+        StreamVideo=true;
+        killMedia(el.srcObject)
+        el.pause();
+        el.srcObject=feed.stream.clone()
+        el.play();
+      }
+    }
+  })
+  el.srcObject=feed.stream.clone();
   el.setAttribute("data-streamid", feed.stream.id);
   el.style.width="100%";
   el.style.height="80px";
@@ -2586,6 +2630,7 @@ function getAllFeedElements(con) {
 function removeAllFeedElements(con) {
   var el=getAllFeedElements(con);
   for(var i=0;i<el.length;i++) {
+    killMedia(el[i].srcObject)
     el[i].parentNode.removeChild(el[i]);
   }
 }
