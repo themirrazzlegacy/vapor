@@ -75,7 +75,7 @@ function createFeedElement(feed) {
   el.style.height="60px";
   el.setAttribute("data-purpose", feed.purpose);
   el.className="vapor-vcall-feed";
-  el.
+  el.controls=true;
   return el
 }
 
@@ -89,4 +89,14 @@ function removeAllFeedElements(con) {
   for(var i=0;i<el.length;i++) {
     el[i].parentNode.removeChild(el[i]);
   }
+}
+
+function getFeedElByStreamId(con,id) {
+  var el=getAllFeedElements(con);
+  for(var i=0;i<el.length;i++) {
+    if(el.dataset.streamid===id){
+       return el;
+    }
+  }
+  return null
 }
