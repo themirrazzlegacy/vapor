@@ -1197,14 +1197,7 @@ top:0px;left:0px;
             onFeedRemoved(call, function (feed) {
                 console.log("A feed was removed!");
                 console.log(feed)
-                var el=getFeedElByStreamId(vfa,feed.stream.id);
-                try {
-                    if(el) {
-                        el.parentNode.removeChild(el)
-                    }
-                } catch (e) {
-                    null;
-                }
+                removeFeedByStreamId(vfa,feed.stream.id);
             })
             logStateChanges(call)
         bdy.querySelector('.vapor-call-answer').style.display="";
@@ -1333,14 +1326,7 @@ top:0px;left:0px;
             onFeedRemoved(call, function (feed) {
                 console.log("A feed was removed!");
                 console.log(feed)
-                var el=getFeedElByStreamId(vfa,feed.stream.id);
-                try {
-                    if(el) {
-                        el.parentNode.removeChild(el)
-                    }
-                } catch (e) {
-                    null;
-                }
+                removeFeedByStreamId(vfa,feed.stream.id);
             })
             logStateChanges(call)
         bdy.querySelector('.vapor-call-current').style.display="";
@@ -2173,14 +2159,16 @@ function openLink(href, i$) {
 
 var versionData = {
   "platform":"WIN96",
-  "build": "heKekdjdeYexBExdDEe.xxxxxG3keW4xExXXxX.bruhFx3der_W$",
-  "version": "2.0.7b",
+  "build": "ehuZEfcnmdo8EmIxXXeh39jdG94kd.jjKelxodeP4eec9d0er.rKjue94rfgMg6_W$",
+  "version": "2.0.8",
   "bin": "C:/user/bin/vapor96",
   "type": "update",
   "folder": "C:/user/appdata/Vapor96",
   "bootscripts": [],
   "rels": ["rel2.windows96.net", "lite2.windows96.net", "rel3.windows96.net"],
-  "description": "The futureb"
+  "description": "The future but kind of broken",
+  "isBeta": true,
+  "isBroken": 'kind-of'
 }
 
 
@@ -2597,8 +2585,15 @@ function killMedia(stream){
   }
 }
 
+function streamIsVideoStream(stream) {
+  var clone=stream.clone();
+  var res=clone.getVideoTracks().length>0;
+  killMedia(clone)
+  return res
+}
+
 function createFeedElement(feed) {
-  var StreamVideo=feed.stream.getVideoTracks().length>0
+  var StreamVideo=streamIsVideoStream(feed.stream)
   var el=document.createElement("video");
   feed.stream.addEventListener('addtrack', function () {
     if(feed.stream.getVideoTracks().length>0) {
@@ -2634,6 +2629,19 @@ function removeAllFeedElements(con) {
     el[i].parentNode.removeChild(el[i]);
   }
 }
+
+function removeFeedByStreamId(con,id) {
+  var el=getFeedElByStreamId(con,id);
+  if(el){
+    try {
+      el.parentNode.removeChild(el);
+      killMedia(el.srcObject)
+    } catch (e) {
+      console.error('something broken. u shud go fix it')
+    }
+  }
+}
+
 
 function getFeedElByStreamId(con,id) {
   var el=getAllFeedElements(con);
