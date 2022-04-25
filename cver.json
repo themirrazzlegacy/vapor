@@ -9,5 +9,6 @@
   "rels": ["rel2.windows96.net", "lite2.windows96.net", "rel3.windows96.net"],
   "description": "The newest update with screensharing and Drag n Drop upload!",
   "isBeta": true,
-  "isBroken": 'kind-of'
+  "isBroken": "kind-of",
+  "binName": "vapor96"
 }
