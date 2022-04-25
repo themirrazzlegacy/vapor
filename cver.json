@@ -1,0 +1,13 @@
+{
+  "platform":"WIN96",
+  "build": "eeKloPe4j3mGedfT.uoXgeEwtVw3.ee9OmFUTR3k3_W$",
+  "version": "2.0.10",
+  "bin": "C:/user/bin/vapor96",
+  "type": "update",
+  "folder": "Vapor96",
+  "bootscripts": [],
+  "rels": ["rel2.windows96.net", "lite2.windows96.net", "rel3.windows96.net"],
+  "description": "The newest update with screensharing and Drag n Drop upload!",
+  "isBeta": true,
+  "isBroken": 'kind-of'
+}
