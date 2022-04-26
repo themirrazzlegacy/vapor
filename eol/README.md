@@ -1,0 +1,2 @@
+## These versions are **end of life**!
+This means they will not recieve new feature updates, security updates, or any support at all. Please avoid using these versions as they are outdated and are full of vulnerabilities that can harm your Windows96 environment that were fixed in later versions. Your best action would be to use the latest version, and if you do use these, use them at your own risk.
