@@ -1,6 +1,10 @@
 # Vapor
 #### a simple, easy to use Matrix client for Windows96
 
+> **:warning: WARNING :warning:**<br>
+> Vapor is no longer officially supported. We will not be disabling its functionality or taking it down, but it will no longer recieve updates.
+> If you would still like to access Matrix on Windows 96, please look at my other repositories.
+
 Welcome to the offical repo of Vapor, an easy-to-use Matrix Client for Windows96!
 
 ## How to install:
